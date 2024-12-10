@@ -2,22 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --dark-background: #121212;
+    --dark-card: #1e1e1e; /* Darker background for components */
+    --dark-foreground: #e0e0e0;
+    --dark-muted: #3a3a3a; /* Muted gray for a subtle shade */
+    --light-background: #f8f8f8;
+    --light-card: #ffffff;
+    --light-foreground: #000000;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  .dark {
+    --background: var(--dark-background);
+    --card: var(--dark-card);
+    --foreground: var(--dark-foreground);
+    --muted: var(--dark-muted);
+  }
+
+  .light {
+    --background: var(--light-background);
+    --card: var(--light-card);
+    --foreground: var(--light-foreground);
+  }
+
+  .card {
+    background-color: var(--card);
+    border-color: var(--muted);
+  }
+
+  .dark .bg-white {
+    background-color: var(--card);
+  }
+
+  .dark .text-black {
+    color: var(--foreground);
+  }
 }
 
 @layer utilities {
