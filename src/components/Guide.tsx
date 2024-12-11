@@ -25,14 +25,15 @@ const Guide: React.FC<GuideProps> = ({ darkMode }) => {
           <ul className="list-disc list-inside space-y-4">
             <li>
               <strong>Utterance (U):</strong> A spoken or written statement,
-              e.g., "John went to the store."
+              e.g., &quot;John went to the store.&quot;
             </li>
             <li>
               <strong>
                 Utterance Sequence (U<sub>n</sub>, U<sub>n+1</sub>):
               </strong>{" "}
               A pair of utterances in a discourse. For example, U<sub>n</sub>:
-              "John went to the store." U<sub>n+1</sub>: "He bought some milk."
+              &quot;John went to the store.&quot; U<sub>n+1</sub>: &quot;He
+              bought some milk.&quot;
             </li>
             <li>
               <strong>Discourse Segment (DS):</strong> A coherent segment of
@@ -43,16 +44,17 @@ const Guide: React.FC<GuideProps> = ({ darkMode }) => {
                 Backward-Looking Center (C<sub>b</sub>):
               </strong>{" "}
               The primary entity from U<sub>n</sub> that continues as the focus
-              in U<sub>n+1</sub>. Example: In "John went to the store. He bought
-              milk," the C<sub>b</sub> is "John."
+              in U<sub>n+1</sub>. Example: In &quot;John went to the store. He
+              bought milk,&quot; the C<sub>b</sub> is &quot;John.&quot;
             </li>
             <li>
               <strong>
                 Forward-Looking Centers (C<sub>f</sub>):
               </strong>{" "}
               Potential entities in U<sub>n</sub> that could become the focus in
-              U<sub>n+1</sub>. Example: In "John went to the store," C
-              <sub>f</sub> might include "John" and "the store."
+              U<sub>n+1</sub>. Example: In &quot;John went to the store,&quot; C
+              <sub>f</sub> might include &quot;John&quot; and &quot;the
+              store.&quot;
             </li>
             <li>
               <strong>
@@ -139,16 +141,16 @@ const Guide: React.FC<GuideProps> = ({ darkMode }) => {
               <p className="font-semibold mb-2">Examples:</p>
               <ul className="list-disc list-inside space-y-2">
                 <li>
-                  <strong>Continue:</strong> "John went to the store. He bought
-                  milk."
+                  <strong>Continue:</strong> &quot;John went to the store. He
+                  bought milk.&quot;
                 </li>
                 <li>
-                  <strong>Retain:</strong> "John went to the store. The store
-                  was closed."
+                  <strong>Retain:</strong> &quot;John went to the store. The
+                  store was closed.&quot;
                 </li>
                 <li>
-                  <strong>Shift:</strong> "John went to the store. Mary stayed
-                  home."
+                  <strong>Shift:</strong> &quot;John went to the store. Mary
+                  stayed home.&quot;
                 </li>
               </ul>
             </div>

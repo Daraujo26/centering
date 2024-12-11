@@ -3,7 +3,6 @@ import {
   AiOutlineGlobal,
   AiOutlineFileText,
 } from "react-icons/ai";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaSun, FaMoon } from "react-icons/fa";
 

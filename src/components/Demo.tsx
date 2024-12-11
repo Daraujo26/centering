@@ -81,8 +81,8 @@ export default function Demo({ userInput, setUserInput, darkMode }: DemoProps) {
             >
               <p className="text-base ">
                 John has been acting quite odd. He called up Mike yesterday.
-                Mike was studying for his driver's test. He was annoyed by
-                John's call.
+                Mike was studying for his driver&apos;s test. He was annoyed by
+                John&apos;s call.
               </p>
             </div>
             <div

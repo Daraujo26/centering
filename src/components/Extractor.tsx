@@ -31,7 +31,7 @@ export default function Extractor({
   const [inputVisible, setInputVisible] = useState(true);
   const [canRenderResults, setCanRenderResults] = useState(false);
   const [clearButtonVisible, setClearButtonVisible] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<String | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const validateInput = (input: string): string | null => {
     const utterances = input
@@ -118,9 +118,9 @@ export default function Extractor({
           setClearButtonVisible(true);
         }, 500);
       }, 500);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error fetching from backend:", error);
-      if (error.message.includes("500")) {
+      if (error instanceof Error) {
         setErrorMessage("Server encountered an error. Please try again later.");
       } else {
         setErrorMessage(
