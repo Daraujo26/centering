@@ -85,6 +85,23 @@ export default function Demo({ userInput, setUserInput, darkMode }: DemoProps) {
                 John's call.
               </p>
             </div>
+            <div
+              onClick={() =>
+                setUserInput(
+                  "Jill caught a ball. She tossed it to John. He caught it while in the air."
+                )
+              }
+              className={`p-4 cursor-pointer rounded-xl shadow-sm transition ${
+                darkMode
+                  ? "hover:bg-gray-800 bg-gray-700"
+                  : "hover:bg-gray-200 bg-gray-300"
+              }`}
+            >
+              <p className="text-base ">
+                Jill caught a ball. She tossed it to John. He caught it while in
+                the air.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -94,6 +111,7 @@ export default function Demo({ userInput, setUserInput, darkMode }: DemoProps) {
           setUserInput={setUserInput}
           darkMode={darkMode}
         />
+        {/* <DebugExtractor></DebugExtractor> */}
       </motion.div>
     </main>
   );

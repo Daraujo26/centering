@@ -24,5 +24,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return (
+    <html lang="en">
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0"
+        />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
 }
