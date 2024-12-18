@@ -66,16 +66,14 @@ export default function Home() {
             darkMode ? "bg-gray-900 text-gray-200" : "bg-gray-100 text-black"
           } transition-colors duration-300`}
         >
-          <main className="grid grid-rows-[auto_1fr_auto] mx-auto py-4 gap-8 font-[family-name:var(--font-geist-sans)] w-full max-w-screen-xl">
+          <main className="grid grid-rows-[auto_1fr_auto] mx-auto py-4 gap-8 font-[family-name:var(--font-geist-sans)] w-full max-w-screen-xl mb-10">
             <Navbar
               handleDemoClick={handleDemoClick}
               handlePurposeClick={handlePurposeClick}
               darkMode={darkMode}
               toggleDarkMode={toggleDarkMode}
             />
-          <div>
-            
-          </div>
+
             <BlurFade delay={0.1}>
               <section className="mt-16 sm:mt-20">
                 <Title />
