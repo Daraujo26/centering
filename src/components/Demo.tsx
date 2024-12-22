@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Extractor from "./Extractor";
+import { useDarkMode } from "@/components/DarkModeContext";
 
 interface DemoProps {
   userInput: string;
   setUserInput: (input: string) => void;
-  darkMode: boolean;
 }
 
-export default function Demo({ userInput, setUserInput, darkMode }: DemoProps) {
+export default function Demo({ userInput, setUserInput }: DemoProps) {
   const [showNotice, setShowNotice] = useState(true);
+  const { darkMode } = useDarkMode();
 
   return (
     <main className="flex flex-col items-center justify-start gap-8">

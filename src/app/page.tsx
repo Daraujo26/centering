@@ -8,6 +8,7 @@ import Title from "@/components/Title";
 import BlurFade from "@/components/ui/blur-fade";
 import localFont from "next/font/local";
 import Purpose from "@/components/Purpose";
+import { useDarkMode } from "@/components/DarkModeContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,31 +22,10 @@ const geistMono = localFont({
 });
 
 export default function Home() {
-  const [userInput, setUserInput] = useState("");
-  const [darkMode, setDarkMode] = useState(false);
-
+  const { darkMode } = useDarkMode();
   const demoRef = useRef<HTMLDivElement>(null);
-  const purposeRef = useRef<HTMLDivElement>(null);
 
-  const toggleDarkMode = () => setDarkMode(!darkMode);
-
-  const handleDemoClick = () => {
-    if (demoRef.current) {
-      window.scrollTo({
-        top: demoRef.current.offsetTop - 100,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const handlePurposeClick = () => {
-    if (purposeRef.current) {
-      window.scrollTo({
-        top: purposeRef.current.offsetTop - 100,
-        behavior: "smooth",
-      });
-    }
-  };
+  const [userInput, setUserInput] = useState("");
 
   return (
     <html
@@ -67,38 +47,25 @@ export default function Home() {
           } transition-colors duration-300`}
         >
           <main className="grid grid-rows-[auto_1fr_auto] mx-auto py-4 gap-8 font-[family-name:var(--font-geist-sans)] w-full max-w-screen-xl mb-10">
-            <Navbar
-              handleDemoClick={handleDemoClick}
-              handlePurposeClick={handlePurposeClick}
-              darkMode={darkMode}
-              toggleDarkMode={toggleDarkMode}
-            />
-
+            <Navbar />
             <BlurFade delay={0.1}>
               <section className="mt-16 sm:mt-20">
                 <Title />
               </section>
             </BlurFade>
-
             <section>
               <BlurFade delay={0.2}>
-                <Guide darkMode={darkMode} />
+                <Guide />
               </BlurFade>
             </section>
-
-            <section ref={demoRef}>
+            <section id="demo" ref={demoRef}>
               <BlurFade delay={0.3}>
-                <Demo
-                  userInput={userInput}
-                  setUserInput={setUserInput}
-                  darkMode={darkMode}
-                />
+                <Demo userInput={userInput} setUserInput={setUserInput} />
               </BlurFade>
             </section>
-
-            <section ref={purposeRef}>
+            <section>
               <BlurFade delay={0.4}>
-                <Purpose></Purpose>
+                <Purpose />
               </BlurFade>
             </section>
           </main>

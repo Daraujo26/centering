@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useDarkMode } from "@/components/DarkModeContext";
 
-export interface GuideProps {
-  darkMode: boolean;
-}
+const Guide = () => {
+  const { darkMode } = useDarkMode();
 
-const Guide: React.FC<GuideProps> = ({ darkMode }) => {
   return (
     <section className="p-8 rounded-lg shadow-md max-w-7xl mx-auto mb-10">
       <div className="flex flex-row items-center mb-4 pl-4">

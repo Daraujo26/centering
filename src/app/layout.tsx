@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { DarkModeProvider } from "@/components/DarkModeContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,9 +11,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <head>
@@ -21,8 +22,12 @@ export default function RootLayout({
           content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0"
         />
       </head>
-      <body>{children}</body>
-      <Analytics />
+      <body>
+        <DarkModeProvider>
+          {children}
+          <Analytics />
+        </DarkModeProvider>
+      </body>
     </html>
   );
 }

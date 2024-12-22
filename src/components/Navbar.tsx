@@ -1,35 +1,40 @@
-import {
-  AiOutlineStar,
-  AiOutlineGlobal,
-  AiOutlineFileText,
-} from "react-icons/ai";
+"use client";
+
 import { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import {
+  AiOutlineFileText,
+  AiOutlineGlobal,
+  AiOutlineSetting,
+} from "react-icons/ai";
 import { FaSun, FaMoon } from "react-icons/fa";
+import { useDarkMode } from "@/components/DarkModeContext";
 
-interface NavbarProps {
-  handleDemoClick: () => void;
-  handlePurposeClick: () => void;
-  darkMode: boolean;
-  toggleDarkMode: () => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({
-  handleDemoClick,
-  handlePurposeClick,
-  darkMode,
-  toggleDarkMode,
-}) => {
+const Navbar: React.FC = () => {
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleDemoNavigation = () => {
+    if (pathname === "/") {
+      document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#demo");
+    }
+  };
+
+  const handleImplementationNavigation = () => {
+    if (pathname !== "/implementation") {
+      router.push("/implementation");
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY) {
-        setShowNavbar(false); // Hide on scroll down
-      } else {
-        setShowNavbar(true); // Show on scroll up
-      }
+      setShowNavbar(currentScrollY <= lastScrollY);
       setLastScrollY(currentScrollY);
     };
 
@@ -59,27 +64,36 @@ const Navbar: React.FC<NavbarProps> = ({
       {/* Navigation Links */}
       <div className="flex gap-6">
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          onClick={handleDemoClick}
+          className="relative flex items-center gap-2 cursor-pointer group"
+          onClick={handleDemoNavigation}
         >
           <AiOutlineFileText size={20} />
-          Demo
+          <span className="relative">
+            Demo
+            <span className="absolute left-0 bottom-[-1px] w-0 h-[2px] bg-current transition-all duration-300 group-hover:w-full"></span>
+          </span>
         </a>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          onClick={handlePurposeClick}
+          className="relative flex items-center gap-2 cursor-pointer group"
+          onClick={handleImplementationNavigation}
         >
-          <AiOutlineStar size={20} />
-          Purpose
+          <AiOutlineSetting size={20} />
+          <span className="relative">
+            Implementation
+            <span className="absolute left-0 bottom-[-1px] w-0 h-[2px] bg-current transition-all duration-300 group-hover:w-full"></span>
+          </span>
         </a>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          className="relative flex items-center gap-2 group"
           href="https://aclanthology.org/J95-2003/"
           target="_blank"
           rel="noopener noreferrer"
         >
           <AiOutlineGlobal size={20} />
-          Go to paper →
+          <span className="relative">
+            Go to paper →
+            <span className="absolute left-0 bottom-[-1px] w-0 h-[2px] bg-current transition-all duration-300 group-hover:w-full"></span>
+          </span>
         </a>
       </div>
     </section>
