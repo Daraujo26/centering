@@ -140,7 +140,7 @@ export default function ImplementationPage() {
                             </a>{" "}
                             for stylish transitions, and{" "}
                             <a
-                              href="https://react-archer.js.org/"
+                              href="https://github.com/pierpo/react-archer"
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-blue-500 hover:underline"
