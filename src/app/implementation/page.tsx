@@ -374,6 +374,36 @@ def center():
                             </li>
                             <li>Hosting on OVH servers for reliability.</li>
                           </ul>
+                          <div className="flex flex-col justify-center items-center">
+                            <p className="text-base leading-relaxed my-4">
+                              This project is open source and welcomes
+                              contributions from the community. You can explore
+                              the codebases for both the frontend and backend on
+                              GitHub:
+                            </p>
+                            <ul className="list-disc pl-6 space-y-2">
+                              <li>
+                                <a
+                                  href="https://github.com/Daraujo26/centering"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-500 hover:underline"
+                                >
+                                  Frontend Repository
+                                </a>
+                              </li>
+                              <li>
+                                <a
+                                  href="https://github.com/Daraujo26/centering-backend"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-500 hover:underline"
+                                >
+                                  Backend Repository
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
                         </section>
                       </div>
                     </div>
