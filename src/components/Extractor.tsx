@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArcherContainer, ArcherElement } from "react-archer";
+import Image from "next/image";
+import ai2Logo from "../app/Ai2-svg.svg";
 
 type RelationType = {
   targetId: string;
@@ -26,6 +28,12 @@ export default function Extractor({
     results: { Cb: string | null; Cf: string[]; sentence: string }[];
     relations: RelationType[];
   }>(null);
+  const [model, setModel] = useState<"AllenNLP" | "OpenAI">("AllenNLP");
+
+  const toggleModel = () => {
+    setModel((prevModel) => (prevModel === "AllenNLP" ? "OpenAI" : "AllenNLP"));
+  };
+
   const [loading, setLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [inputVisible, setInputVisible] = useState(true);
@@ -40,7 +48,7 @@ export default function Extractor({
       .filter((line) => line !== "");
 
     const maxUtterances = 5;
-    const maxWordsPerUtterance = 10; // Lowered from 20 to 10 words
+    const maxWordsPerUtterance = 10;
 
     if (utterances.length === 0) {
       return "Input cannot be empty. Please enter at least one utterance.";
@@ -82,35 +90,36 @@ export default function Extractor({
     setClearButtonVisible(false);
 
     try {
-      const response = await fetch("https://taskeasy.org/center", { // use localhost:<port> if you're running backend repo locally
+      let data;
+      const response = await fetch("https://taskeasy.org/center", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: userInput }),
       });
 
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
+      if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+      data = await response.json();
+      console.log("Raw AllenNLP Response:", data);
 
-      const data = await response.json();
-
+      // ** Updated Validation **
       if (
+        !data ||
         !data.results ||
+        !Array.isArray(data.results.results) ||
         !Array.isArray(data.results.relations) ||
-        !Array.isArray(data.results.results)
+        !Array.isArray(data.sentences)
       ) {
-        throw new Error("Invalid response structure from backend.");
+        console.error("Invalid Response Structure:", data);
+        throw new Error("Invalid response structure from the backend.");
       }
 
+      // Set the result
       setAnalysisResult({
-        results: data.results.results,
-        relations: data.results.relations,
+        results: data.results.results, // Extract nested `results.results`
+        relations: data.results.relations, // Extract `results.relations`
       });
 
       setCurrentIndex(0);
-
       setTimeout(() => {
         setInputVisible(false);
         setTimeout(() => {
@@ -118,15 +127,11 @@ export default function Extractor({
           setClearButtonVisible(true);
         }, 500);
       }, 500);
-    } catch (error: unknown) {
+    } catch (error) {
       console.error("Error fetching from backend:", error);
-      if (error instanceof Error) {
-        setErrorMessage("Server encountered an error. Please try again later.");
-      } else {
-        setErrorMessage(
-          "An error occurred while processing your request. Ensure your input is valid."
-        );
-      }
+      setErrorMessage(
+        "An error occurred. Please check your input and try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -294,7 +299,7 @@ export default function Extractor({
 
   return (
     <motion.div
-      className="w-3/4 p-6 rounded-lg shadow-md"
+      className="w-full p-4 rounded-lg shadow-md"
       initial={{ height: "auto" }}
       animate={{
         height: analysisResult ? "auto" : 300,
@@ -314,9 +319,11 @@ export default function Extractor({
             transition={{ duration: 0.5 }}
             className="w-full"
           >
-            <h2 className="text-xl font-semibold mb-4">
-              Try Your Own Sentences
-            </h2>
+            <div className="flex flex-row items-center justify-evenly mb-4">
+              <h2 className="w-full text-xl font-semibold">
+                Try Your Own Sentences
+              </h2>
+            </div>
             <textarea
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
