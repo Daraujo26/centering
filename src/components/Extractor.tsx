@@ -82,7 +82,7 @@ export default function Extractor({
     setClearButtonVisible(false);
 
     try {
-      const response = await fetch("https://taskeasy.org/center", {
+      const response = await fetch("https://taskeasy.org/center", { // use localhost:<port> if you're running backend repo locally
         method: "POST",
         headers: {
           "Content-Type": "application/json",
