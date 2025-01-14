@@ -59,14 +59,25 @@ export default function Demo({ userInput, setUserInput }: DemoProps) {
       </AnimatePresence>
 
       <motion.div
-        className="flex flex-row gap-6 w-full max-w-5xl"
+        className="flex flex-col md:flex-row gap-6 w-full max-w-5xl"
         initial={{ y: 0 }}
         animate={{ y: showNotice ? 0 : -20 }}
         transition={{ duration: 0.3 }}
       >
+        {/* Extractor Component */}
+        <div className="flex md:w-2/3 order-2 md:order-1">
+          <Extractor
+            userInput={userInput}
+            setUserInput={setUserInput}
+            darkMode={darkMode}
+          />
+        </div>
+
         {/* Default Examples Section */}
-        <section className="w-1/3 p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-4">Default Examples</h2>
+        <section className="w-full md:w-1/3 p-6 rounded-lg shadow-md">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-2xl font-semibold">Default Examples</h2>
+          </div>
           <div className="flex flex-col gap-4">
             <div
               onClick={() =>
@@ -105,14 +116,6 @@ export default function Demo({ userInput, setUserInput }: DemoProps) {
             </div>
           </div>
         </section>
-
-        {/* Extractor Component */}
-        <Extractor
-          userInput={userInput}
-          setUserInput={setUserInput}
-          darkMode={darkMode}
-        />
-        {/* <DebugExtractor></DebugExtractor> */}
       </motion.div>
     </main>
   );
