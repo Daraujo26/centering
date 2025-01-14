@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArcherContainer, ArcherElement } from "react-archer";
-import Image from "next/image";
-import ai2Logo from "../app/Ai2-svg.svg";
 
 type RelationType = {
   targetId: string;
@@ -28,11 +26,6 @@ export default function Extractor({
     results: { Cb: string | null; Cf: string[]; sentence: string }[];
     relations: RelationType[];
   }>(null);
-  const [model, setModel] = useState<"AllenNLP" | "OpenAI">("AllenNLP");
-
-  const toggleModel = () => {
-    setModel((prevModel) => (prevModel === "AllenNLP" ? "OpenAI" : "AllenNLP"));
-  };
 
   const [loading, setLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -89,8 +82,8 @@ export default function Extractor({
     setCanRenderResults(false);
     setClearButtonVisible(false);
 
+    let data;
     try {
-      let data;
       const response = await fetch("https://taskeasy.org/center", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
