@@ -44,6 +44,29 @@ export default function Purpose() {
         </div>
       </div>
 
+      <div className="flex flex-col items-center justify-center my-4 max-w-3xl mx-auto">
+        <p className="font-serif text-center text-gray-700 italic font-light text-lg leading-relaxed py-2 w-full">
+          🕯️
+          <br />
+          In memory of{" "}
+          <a
+            href="https://almanac.upenn.edu/articles/aravind-joshi-engineering"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium hover:underline transition-all duration-300 hover:text-gray-900"
+          >
+            Dr. Aravind K. Joshi (1929-2017)
+          </a>
+          ,
+          <br />
+          Penn professor and co-author of the original Centering Theory paper,
+          <br />
+          whose pioneering collaboration with Dr. Scott Weinstein
+          <br />
+          fundamentally shaped modern computational discourse analysis.
+        </p>
+      </div>
+
       <div className="flex flex-col items-center justify-center p-2 gap-2 m-3">
         <Image priority src={aclLogo} height={120} width={120} alt="ACL Logo" />
         <div className="flex flex-row items-center gap-2">

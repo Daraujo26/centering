@@ -92,7 +92,7 @@ export default function Extractor({
 
       if (!response.ok) throw new Error(`Error: ${response.statusText}`);
       data = await response.json();
-      console.log("Raw AllenNLP Response:", data);
+      // console.log("Raw AllenNLP Response:", data);
 
       // ** Updated Validation **
       if (
@@ -102,7 +102,7 @@ export default function Extractor({
         !Array.isArray(data.results.relations) ||
         !Array.isArray(data.sentences)
       ) {
-        console.error("Invalid Response Structure:", data);
+        // console.error("Invalid Response Structure:", data);
         throw new Error("Invalid response structure from the backend.");
       }
 
@@ -121,7 +121,7 @@ export default function Extractor({
         }, 500);
       }, 500);
     } catch (error) {
-      console.error("Error fetching from backend:", error);
+      // console.error("Error fetching from backend:", error);
       setErrorMessage(
         "An error occurred. Please check your input and try again."
       );

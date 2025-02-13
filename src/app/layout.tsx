@@ -4,7 +4,7 @@ import { DarkModeProvider } from "@/components/DarkModeContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Centering",
+  title: "Centering Demo",
   description:
     "Centering: A Framework for Modeling the Local Coherence of Discourse | Barbara J. Grosz, Aravind K. Joshi, Scott Weinstein",
 };
