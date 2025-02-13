@@ -121,7 +121,7 @@ export default function Extractor({
         }, 500);
       }, 500);
     } catch (error) {
-      // console.error("Error fetching from backend:", error);
+      console.error("Error fetching from backend:", error);
       setErrorMessage(
         "An error occurred. Please check your input and try again."
       );
