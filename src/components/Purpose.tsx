@@ -46,8 +46,6 @@ export default function Purpose() {
 
       <div className="flex flex-col items-center justify-center my-4 max-w-3xl mx-auto">
         <p className="font-serif text-center text-gray-700 italic font-light text-lg leading-relaxed py-2 w-full">
-          🕯️
-          <br />
           In memory of{" "}
           <a
             href="https://almanac.upenn.edu/articles/aravind-joshi-engineering"
@@ -61,7 +59,8 @@ export default function Purpose() {
           <br />
           Penn professor and co-author of the original Centering Theory paper,
           <br />
-          whose pioneering collaboration with Dr. Scott Weinstein
+          whose pioneering collaboration with Dr. Barbara Grosz and Dr. Scott
+          Weinstein
           <br />
           fundamentally shaped modern computational discourse analysis.
         </p>
